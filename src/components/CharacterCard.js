@@ -8,9 +8,14 @@ const CardWrapper = styled.article`
   color: white;
   width: 600px;
   border-radius: 0.5rem;
-  box-shadow: rgb(0 0 0 / 10%) 0px 4px 6px -1px,
-    rgb(0 0 0 / 6%) 0px 2px 4px -1px;
   overflow: hidden;
+  box-shadow:
+    2.8px 2.8px 2.2px rgba(0, 0, 0, 0.1),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.072),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.06),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.05),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.04),
+    100px 100px 80px rgba(0, 0, 0, 0.028);
 `;
 
 const ImgWrapper = styled.div`
@@ -45,9 +50,9 @@ const CharacterCard = ({id}) => {
   const [ characterData, characterLoading ] = useFetchCharacter({id});
 
   if(characterLoading) return (
-    <div className="characterCard_Wrapper">
+    <CardWrapper>
       <h1>Loading...</h1>
-    </div>
+    </CardWrapper>
   )
   return (
     <CardWrapper>

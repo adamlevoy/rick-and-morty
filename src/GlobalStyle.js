@@ -14,6 +14,10 @@ export const GlobalStyle = createGlobalStyle`
   --red: #e64358;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -33,13 +37,22 @@ code {
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
+  position: absolute;
+  top: 0;
+}
+
+.Rick-logo {
+  height: 12vmin;
+  pointer-events: none;
+  position: absolute;
+  top: 10px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .Rick-logo {
+    animation: Rick-logo-spin infinite 20s linear;
   }
 }
 
@@ -58,7 +71,7 @@ code {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
+@keyframes Rick-logo-spin {
   from {
     transform: rotate(0deg);
   }
@@ -73,14 +86,32 @@ main {
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  background-color: var(--grey);
+  background-color: var(--green);
   height: 100vh;
 }
 
 .buttonWrapper {
   display: flex;
   gap: 1rem;
-  margin-block: 1rem;
+  margin-block: 2rem;
+}
+
+button {
+  width: 10em;
+  padding: 0.75em 1em;
+  background: var(--grey);
+  border-radius: 5px;
+  color: var(--dark);
+  font-weight: bold;
+  border: 3px solid var(--dark);
+
+  :hover {
+  opacity: .8;
+  }
+
+  :active {
+    outline: 2px solid var(--dark);
+  }
 }
 
 `;
