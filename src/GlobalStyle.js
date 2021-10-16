@@ -1,3 +1,7 @@
+import { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyle = createGlobalStyle`
+
 :root {
   --dark: #3a4767;
   --grey: #bee5fd;
@@ -8,6 +12,20 @@
   --brown: #44281d;
   --lightBrown: #f8d3ac;
   --red: #e64358;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
 .App {
@@ -49,43 +67,6 @@
   }
 }
 
-.characterCard_Wrapper {
-  display: flex;
-  background-color: var(--dark);
-  color: white;
-  width: 600px;
-  border-radius: 0.5rem;
-  box-shadow: rgb(0 0 0 / 10%) 0px 4px 6px -1px,
-    rgb(0 0 0 / 6%) 0px 2px 4px -1px;
-  overflow: hidden;
-}
-
-.characterCard_ImageWrapper {
-  flex: 2 1 0%;
-}
-
-.characterImage {
-  width: 100%;
-  height: 100%;
-}
-
-.characterCard_ContentWrapper {
-  padding: 0.75rem;
-  flex: 3 1 0%;
-}
-
-.status {
-  display: flex;
-  align-items: center;
-}
-
-.status-icon {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  margin-right: 0.5rem;
-}
-
 main {
   display: flex;
   flex-direction: column;
@@ -101,3 +82,5 @@ main {
   gap: 1rem;
   margin-block: 1rem;
 }
+
+`;
