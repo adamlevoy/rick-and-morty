@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+import React, { useState }  from 'react';
 import './App.css';
+import CharacterCard from './components/CharacterCard';
 
 function App() {
+  const [ characterId, setCharacterId ] = useState(1);
+
+  const increment = () => {
+    setCharacterId((initial) => initial + 1);
+  }
+
+  const decrement = () => {
+    setCharacterId((initial) => initial - 1);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <CharacterCard id={characterId}/>
+      <div className="buttonWrapper">
+        <button onClick={decrement}>⬅️ Previous</button>
+        <button onClick={increment}>Next ➡️</button>
+      </div>
+    </main>
   );
 }
 

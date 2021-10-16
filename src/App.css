@@ -1,3 +1,15 @@
+:root {
+  --dark: #3a4767;
+  --grey: #bee5fd;
+  --blue: #01b4c6;
+  --green: #97ce4c;
+  --yellow: #fff874;
+  --pink: #f675da;
+  --brown: #44281d;
+  --lightBrown: #f8d3ac;
+  --red: #e64358;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +47,57 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.characterCard_Wrapper {
+  display: flex;
+  background-color: var(--dark);
+  color: white;
+  width: 600px;
+  border-radius: 0.5rem;
+  box-shadow: rgb(0 0 0 / 10%) 0px 4px 6px -1px,
+    rgb(0 0 0 / 6%) 0px 2px 4px -1px;
+  overflow: hidden;
+}
+
+.characterCard_ImageWrapper {
+  flex: 2 1 0%;
+}
+
+.characterImage {
+  width: 100%;
+  height: 100%;
+}
+
+.characterCard_ContentWrapper {
+  padding: 0.75rem;
+  flex: 3 1 0%;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+}
+
+.status-icon {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--grey);
+  height: 100vh;
+}
+
+.buttonWrapper {
+  display: flex;
+  gap: 1rem;
+  margin-block: 1rem;
 }
