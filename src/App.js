@@ -1,6 +1,8 @@
 import React, { useState }  from 'react';
+import Header from './components/Header';
 import CharacterCard from './components/CharacterCard';
-import Rick from './rick.png'
+import CharacterPage from './components/CharacterPage';
+
 
 function App() {
   const [ characterId, setCharacterId ] = useState(1);
@@ -14,14 +16,17 @@ function App() {
   }
 
   return (
-    <main>
-      <img className="Rick-logo" src={Rick} alt="react logo" />
-      <CharacterCard id={characterId}/>
-      <div className="buttonWrapper">
-        <button onClick={decrement}>Previous</button>
-        <button onClick={increment}>Next</button>
-      </div>
-    </main>
+    <>
+      <Header />
+      <main>
+        <CharacterCard id={characterId}/>
+        <div className="buttonWrapper">
+          <button onClick={decrement}>Previous</button>
+          <button onClick={increment}>Next</button>
+        </div>
+        <CharacterPage />
+      </main>
+    </>
   );
 }
 

@@ -16,6 +16,7 @@ export const GlobalStyle = createGlobalStyle`
 
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 
 body {
@@ -25,6 +26,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--green);
 }
 
 code {
@@ -46,8 +48,8 @@ code {
 .Rick-logo {
   height: 12vmin;
   pointer-events: none;
-  position: absolute;
-  top: 10px;
+  ${'' /* position: absolute;
+  top: 10px; */}
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -86,8 +88,6 @@ main {
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  background-color: var(--green);
-  height: 100vh;
 }
 
 .buttonWrapper {

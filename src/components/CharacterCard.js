@@ -45,15 +45,25 @@ const StatusIcon = styled.span`
   background: ${props => props.status === 'Alive' ? "var(--green)" : "var(--red)"};
 `;
 
+const Section = styled.div`
+  margin-block: 1rem;
+
+  span {
+    color: var(--grey);
+  }
+`
 
 const CharacterCard = ({id}) => {
-  const [ characterData, characterLoading ] = useFetchCharacter({id});
+  const [ characterData, characterLoading ] = useFetchCharacter({
+    type: 'character',
+    id});
 
   if(characterLoading) return (
     <CardWrapper>
       <h1>Loading...</h1>
     </CardWrapper>
   )
+
   return (
     <CardWrapper>
         <ImgWrapper>
@@ -61,12 +71,23 @@ const CharacterCard = ({id}) => {
         </ImgWrapper>
         <ContentWrapper>
           <h1>{characterData.name}</h1>
-          <p>{characterData.species}</p>
+
           <Status>
             <StatusIcon status={characterData.status} />
-            <span>{characterData.status}</span>
+            <span>{`${characterData.status} - ${characterData.species}`}</span>
           </Status>
+        <Section>
+          <span>Origin:</span>
+          <p>{characterData.origin.name}</p>
+        </Section>
+        <Section>
+          <span>Last known location:</span>
           <p>{characterData.location.name}</p>
+        </Section>
+        <Section>
+          <span>First seen on:</span>
+          {/* <p>{firstEpisodeName}</p> */}
+        </Section>
         </ContentWrapper>
       </CardWrapper>
   )

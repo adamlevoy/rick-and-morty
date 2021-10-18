@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# React Rick
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React Rick is a [Create React App](https://github.com/facebook/create-react-app) playground using the [Rick and Morty API](https://rickandmortyapi.com/).
+
+I'm a new web developer and this project is a way for me to learn, build, and have fun.
 
 ## Available Scripts
 
