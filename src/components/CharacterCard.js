@@ -4,9 +4,10 @@ import styled from 'styled-components';
 
 const CardWrapper = styled.article`
   display: flex;
+  flex-wrap: wrap;
   background-color: var(--dark);
   color: white;
-  width: 600px;
+  width: minmax(90%, 600px);
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow:

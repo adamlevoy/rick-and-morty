@@ -19,11 +19,11 @@ function App() {
     <>
       <Header />
       <main>
-        <CharacterCard id={characterId}/>
-        <div className="buttonWrapper">
+        {/* <CharacterCard id={characterId}/> */}
+        {/* <div className="buttonWrapper">
           <button onClick={decrement}>Previous</button>
           <button onClick={increment}>Next</button>
-        </div>
+        </div> */}
         <CharacterPage />
       </main>
     </>

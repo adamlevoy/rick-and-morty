@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFetchCharacter } from '../api/useFetchCharacter';
 import styled from 'styled-components';
 
+
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 `;
 
 const Showcase = styled.div`
@@ -36,15 +39,50 @@ const Card = styled.div`
 
 const Name = styled.h3`
   margin-block: 1rem;
-`
+`;
 
 const CharacterPage = () => {
-  const [ allCharacterData, allCharactersLoading ] = useFetchCharacter({type: 'character'});
+  const [ inputValue, setInputValue ] = useState("");
+  const [ queryValue, setQueryValue ] = useState(null);
+
+  const [ allCharacterData, allCharactersLoading ] = useFetchCharacter({
+    type: 'character',
+    query: queryValue? `?name=${queryValue}` : ''
+  });
 
   if(allCharactersLoading) return null;
 
   return (
     <Wrapper>
+    {queryValue && <p>{`Results: ${allCharacterData.info.count}`}</p>}
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          setQueryValue(inputValue);
+          }}>
+      <input
+        type="text"
+        placeholder="search by name"
+        value={inputValue}
+        onChange={e => setInputValue(e.target.value)}
+        />
+      </form>
+
+      {/* <Showcase>
+        {allCharacterData.results
+          .filter((character) => character.name
+          .toLowerCase()
+          .includes(filter.toLocaleLowerCase()))
+          .map((character) => {
+            return (
+            <Card key={character.id}>
+              <img src={character.image} alt={character.name}/>
+              <Name>{character.name}</Name>
+            </Card>
+          );
+          })
+        }
+      </Showcase> */}
       <Showcase>
         {allCharacterData.results.map((character) => {
           return (

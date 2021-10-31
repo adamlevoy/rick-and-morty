@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 
 export const useFetchCharacter = ({
   type,
-  id}) => {
+  query,
+  status
+}) => {
 
   const [ data, setData] = useState({});
   const [ loading, setLoading ] = useState(true);
@@ -12,17 +14,17 @@ export const useFetchCharacter = ({
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${baseUrl}${type}/${id? id : ''}`);
+        const response = await fetch(`${baseUrl}${type}/${query? query : ''}${status? status : ''}`);
         const data = await response.json();
         setData(data);
-
+        console.log(data);
       } catch (error) {
         console.error(error);
       }
       setLoading(false);
     }
     fetchData();
-  },[baseUrl, type, id]);
+  },[ baseUrl, type, query, status ]);
 
   return [ data, loading ];
 }

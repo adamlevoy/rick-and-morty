@@ -96,7 +96,7 @@ main {
   margin-block: 2rem;
 }
 
-button {
+${'' /* button {
   width: 10em;
   padding: 0.75em 1em;
   background: var(--grey);
@@ -112,6 +112,6 @@ button {
   :active {
     outline: 2px solid var(--dark);
   }
-}
+} */}
 
 `;
