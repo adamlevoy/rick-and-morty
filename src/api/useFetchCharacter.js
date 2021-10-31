@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 export const useFetchCharacter = ({
   type,
   query,
-  status
+  page
 }) => {
 
   const [ data, setData] = useState({});
@@ -14,7 +14,7 @@ export const useFetchCharacter = ({
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${baseUrl}${type}/${query? query : ''}${status? status : ''}`);
+        const response = await fetch(`${baseUrl}${type}/?${query? query : ''}${page? page : ''}`);
         const data = await response.json();
         setData(data);
         console.log(data);
@@ -24,7 +24,7 @@ export const useFetchCharacter = ({
       setLoading(false);
     }
     fetchData();
-  },[ baseUrl, type, query, status ]);
+  },[ baseUrl, type, query, page ]);
 
   return [ data, loading ];
 }

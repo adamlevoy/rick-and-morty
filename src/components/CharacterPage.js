@@ -9,7 +9,6 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 const Showcase = styled.div`
   display: flex;
   justify-content: center;
@@ -17,7 +16,6 @@ const Showcase = styled.div`
   gap: 2rem;
   padding: 1rem;
 `;
-
 const Card = styled.div`
   text-align: center;
   color: white;
@@ -36,22 +34,26 @@ const Card = styled.div`
     outline: 5px solid var(--pink);
   }
 `;
-
 const Name = styled.h3`
   margin-block: 1rem;
 `;
-
 const SearchBar = styled.input`
   text-align: center;
 `;
+function randomNumber(max) {
+  const num = Math.floor(Math.random() * max);
+  return num;
+};
 
 const CharacterPage = () => {
   const [ inputValue, setInputValue ] = useState("");
-  const [ queryValue, setQueryValue ] = useState(null);
+  const [ query, setQuery ] = useState(null);
+  const [ page, setPage ] = useState(randomNumber(35));
 
   const [ allCharacterData, allCharactersLoading ] = useFetchCharacter({
     type: 'character',
-    query: queryValue? `?name=${queryValue}` : ''
+    query: query ? `name=${query}&` : "",
+    page: page ? `page=${page}&` : ""
   });
 
   if(allCharactersLoading) return (
@@ -59,16 +61,16 @@ const CharacterPage = () => {
   );
 
   if(allCharacterData.error) return(
-    <Showcase><h3>No results for {queryValue}. <span onClick={() => window.location.reload(false)}>Try again!</span></h3></Showcase>
+    <Showcase><h3>No results for {query}. <span onClick={() => window.location.reload(false)}>Try again!</span></h3></Showcase>
   );
 
   return (
     <Wrapper>
-    {queryValue && <p>{`Results: ${allCharacterData.info.count}`}</p>}
       <form
         onSubmit={e => {
           e.preventDefault();
-          setQueryValue(inputValue);
+          setPage(1);
+          setQuery(inputValue);
           }}>
       <SearchBar
         type="text"
@@ -77,6 +79,11 @@ const CharacterPage = () => {
         onChange={e => setInputValue(e.target.value)}
         />
       </form>
+      <div>
+      {query && <p>{`Results: ${allCharacterData.info.count}`}</p>}
+      <button onClick={() => setPage((initial) => initial - 1)}>Prev</button>
+      <button onClick={() => setPage((initial) => initial + 1)}>Next</button>
+      </div>
 
       <Showcase>
         {allCharacterData.results.map((character) => {
