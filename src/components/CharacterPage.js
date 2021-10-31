@@ -41,6 +41,10 @@ const Name = styled.h3`
   margin-block: 1rem;
 `;
 
+const SearchBar = styled.input`
+  text-align: center;
+`;
+
 const CharacterPage = () => {
   const [ inputValue, setInputValue ] = useState("");
   const [ queryValue, setQueryValue ] = useState(null);
@@ -50,7 +54,13 @@ const CharacterPage = () => {
     query: queryValue? `?name=${queryValue}` : ''
   });
 
-  if(allCharactersLoading) return null;
+  if(allCharactersLoading) return (
+    <Showcase><h3>loading...</h3></Showcase>
+  );
+
+  if(allCharacterData.error) return(
+    <Showcase><h3>No results for {queryValue}. <span onClick={() => window.location.reload(false)}>Try again!</span></h3></Showcase>
+  );
 
   return (
     <Wrapper>
@@ -60,7 +70,7 @@ const CharacterPage = () => {
           e.preventDefault();
           setQueryValue(inputValue);
           }}>
-      <input
+      <SearchBar
         type="text"
         placeholder="search by name"
         value={inputValue}
@@ -68,21 +78,6 @@ const CharacterPage = () => {
         />
       </form>
 
-      {/* <Showcase>
-        {allCharacterData.results
-          .filter((character) => character.name
-          .toLowerCase()
-          .includes(filter.toLocaleLowerCase()))
-          .map((character) => {
-            return (
-            <Card key={character.id}>
-              <img src={character.image} alt={character.name}/>
-              <Name>{character.name}</Name>
-            </Card>
-          );
-          })
-        }
-      </Showcase> */}
       <Showcase>
         {allCharacterData.results.map((character) => {
           return (
