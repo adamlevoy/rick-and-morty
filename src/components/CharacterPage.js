@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useFetchCharacter } from '../api/useFetchCharacter';
 import styled from 'styled-components';
+import Laser from '../laser-gun.png'
 
-
+// styles
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -39,7 +40,42 @@ const Name = styled.h3`
 `;
 const SearchBar = styled.input`
   text-align: center;
+  font-family: 'Amatic SC', cursive, sans-serif;
+  font-size: 20px;
 `;
+const Results = styled.span`
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--blue);
+`;
+const PageToggle = styled.div `
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 20px;
+  color: var(--dark);
+  min-width: 150px;
+  margin-block: 1rem;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center:
+    align-items: center;
+    text-align: center;
+  }
+
+  img {
+    max-width: 55px;
+    filter: drop-shadow(0 0 3px var(--dark));
+  }
+
+  .prev {
+    transform: scaleX(-1);
+  }
+`;
+
+// helpers
 function randomNumber(max) {
   const num = Math.floor(Math.random() * max);
   return num;
@@ -80,10 +116,20 @@ const CharacterPage = () => {
         />
       </form>
       <div>
-      {query && <p>{`Results: ${allCharacterData.info.count}`}</p>}
-      <button onClick={() => setPage((initial) => initial - 1)}>Prev</button>
-      <button onClick={() => setPage((initial) => initial + 1)}>Next</button>
+        {query && <Results>{`Results: ${allCharacterData.info.count}`}</Results>}
       </div>
+      <PageToggle>
+      <div onClick={() => setPage((initial) => initial - 1)}>
+        <img className="prev" src={Laser} alt="laser gun" />
+        <span>PREV</span>
+      </div>
+      <div onClick={() => setPage((initial) => initial - 1)}>
+        <img src={Laser} alt="laser gun" />
+        <span>NEXT</span>
+      </div>
+      {/* <button className="prev" onClick={() => setPage((initial) => initial - 1)}>Prev</button>
+      <button onClick={() => setPage((initial) => initial + 1)}>Next</button> */}
+      </PageToggle>
 
       <Showcase>
         {allCharacterData.results.map((character) => {
